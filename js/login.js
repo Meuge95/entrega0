@@ -36,10 +36,11 @@ function onSignIn(googleUser) {
 
   usuario.nombre=profile.getName();
   usuario.estado="Conectado"
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
+  localStorage.setItem("usuario" , JSON.stringify(usuario));
+  /*var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);*/
   location.href="index.html";
-  alert("Conctado");
+  alert("Conectado");
 }
 
 
