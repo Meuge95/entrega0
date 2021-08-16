@@ -38,7 +38,7 @@ function onSignIn(googleUser) {
   usuario.estado="Conectado"
   localStorage.setItem("usuario" , JSON.stringify(usuario));
   location.href="index.html";
-  alert("Conectado");
+ 
 
   // The ID token you need to pass to your backend:
   var id_token = googleUser.getAuthResponse().id_token;
