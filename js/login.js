@@ -31,20 +31,24 @@ function onSignIn(googleUser) {
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail());
 
-  // The ID token you need to pass to your backend:
+  
   let usuario={}
 
   usuario.nombre=profile.getName();
   usuario.estado="Conectado"
   localStorage.setItem("usuario" , JSON.stringify(usuario));
-  /*var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);*/
   location.href="index.html";
   alert("Conectado");
+
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
+  
+  
 }
 
 
 function desconectar(){
-    sessionStorage.clear();
+    localStorage.clear();
     location.href="index.html"
 }
