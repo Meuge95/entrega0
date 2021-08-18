@@ -113,10 +113,9 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script>
-      let usuario = JSON.parse(localStorage.getItem("usuario"));
-      if(usuario.estado=="conectado"){
-        location.href="index.html"
-      }
+      let usuario = JSON.parse( localStorage.getItem("usuario"));
+      document.getElementById("nombre").innerHTML="Está conectado: " +usuario.nombre;
+      
     </script>
   </body>
 </html>
