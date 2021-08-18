@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 function verificacion(){
     let dato = document.getElementById("user");
+    let contraseña = document.getElementById("key");
+    let msj = document.getElementById("msj");
     let usuario = {};
-    if(dato.value.trim() === ""){
+    if(dato.value.trim() === "" || contraseña.value.trim() ===""){
         alert ("Falta completar un campo");
     }else {
         location.href="index.html"
@@ -37,18 +39,34 @@ function onSignIn(googleUser) {
   usuario.nombre=profile.getName();
   usuario.estado="Conectado"
   localStorage.setItem("usuario" , JSON.stringify(usuario));
-  location.href="index.html";
+  
  
 
   // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-  
+  /*var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);*/
+  location.href="index.html";
   
 }
 
 
 function desconectar(){
     localStorage.clear();
-    location.href="index.html"
+    usuario.estado="Desconectado";
+    location.href="login.html"
+    
 }
+
+function singOut(){
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.singOut().then(function(){
+        //lo que quiero hacer cuando me desconecto
+        href="login.html"
+    });
+}
+function onLoad() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init();
+    });
+    
+  }
