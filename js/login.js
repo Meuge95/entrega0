@@ -18,7 +18,7 @@ function verificacion(){
         usuario.nombre = dato.value;
         usuario.estado ="conectado";
         location.href="index.html";
-        
+
         localStorage.setItem("usuario" , JSON.stringify(usuario));
     }
 
@@ -30,15 +30,16 @@ function verificacion(){
 function desconectar(){
     localStorage.clear();
     usuario.estado="Desconectado";
-    location.href="login.html"
-    
+    location.href="login.html";
+    singOut();
 }
 
 function singOut(){
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.singOut().then(function(){
         //lo que quiero hacer cuando me desconecto
-        href="login.html"
+        href="login.html";
+        console.log("Yser signed Out.");
     });
 }
 function onLoad() {

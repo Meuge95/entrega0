@@ -48,23 +48,19 @@
 
 <body>
   
- 
-
-
-  <div class="login-page">
+  
+  <div class="form">
+     <h1 class="center"><b>e-Mercado</b></h1>
    
-    <div class="form">
-       <h1 class="center"><b>e-Mercado</b></h1>
-   
-      <form class="login-form">
+     <form class="login-form">
         <input type="text" placeholder="Nombre de usuario" id="user" required/>
         <input type="password" placeholder="Contraseña" id="password"required/>
-        <button class="btn--btn-primary" id="conectar" onclick="verificacion();">Ingresar</button>
+        <button class="btn--btn-primary" id="conectado" onclick="verificacion();">Ingresar</button>
 
        
-      </form>
-    </div>
-  </div>
+    </form>
+   </div>
+ 
 
   <script>
     let usuario = JSON.parse( localStorage.getItem("usuario"));
