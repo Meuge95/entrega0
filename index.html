@@ -8,11 +8,11 @@
     <title>eMercado - Todo lo que busques está aquí</title>
     
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="13093693165-cochq5t90d0llc519nu97v7ck8uea9sf.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script src="js/google.js"></script>
-
+    <script src="js/login.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <!-- Bootstrap core CSS -->
@@ -28,7 +28,7 @@
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
         <a class="py-2 d-none d-md-inline-block" href="login.html">Ingresar</a> 
-        <button class="btn btn-danger" onclick="desconectar();" id="desconectar">Desconectar</button>
+        <button class="btn btn-danger" onclick="desconectar();" id="desconectado">Desconectar</button>
       </div>
     </nav>
     <main role="main">
@@ -114,8 +114,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script>
-      let usuario = JSON.parse( localStorage.getItem("usuario"));
-      document.getElementById("nombre").innerHTML="Está conectado: " +usuario.nombre;
+     //let usuario = JSON.parse( localStorage.getItem("usuario"));
+     //document.getElementById("nombre").innerHTML="Está conectado: " +usuario.nombre;
       
     </script>
   </body>

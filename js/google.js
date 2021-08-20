@@ -14,19 +14,13 @@ function onSignIn(googleUser) {
     let usuario={}
   
     usuario.nombre=profile.getName();
-    usuario.estado="Conectado"
+    usuario.estado="conectado"
     localStorage.setItem("usuario" , JSON.stringify(usuario));
-    /*var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);*/
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
     location.href="index.html";
     
     
   }
 
-  function singOut(){
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.singOut().then(function(){
-        //lo que quiero hacer cuando me desconecto
-        href="login.html"
-    });
-}
+  

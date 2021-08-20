@@ -2,34 +2,35 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 // key google= 13093693165-cochq5t90d0llc519nu97v7ck8uea9sf.apps.googleusercontent.com
-document.addEventListener("DOMContentLoaded", function(e){
-
-});
+//document.addEventListener("DOMContentLoaded", function(e){});
 
 function verificacion(){
-    let dato = document.getElementById("user");
-    let contraseña = document.getElementById("key");
-    let msj = document.getElementById("msj");
+    let dato = document.getElementById('usuario');
+    let pass = document.getElementById('contraseña');
     let usuario = {};
-    if(dato.value.trim() === "" || contraseña.value.trim() ===""){
+    let contraseña = {};
+    if(dato.value.trim() === '' || pass.value.trim() ===''){
         alert ("Falta completar un campo");
     }else {
        
         usuario.nombre = dato.value;
+        contraseña = pass.value;
         usuario.estado ="conectado";
         location.href="index.html";
 
-        localStorage.setItem("usuario" , JSON.stringify(usuario));
+        localStorage.setItem('usuario' , JSON.stringify(usuario));
+        localStorage.setItem('contraseña' , JSON.stringify(contraseña));
     }
-
+     
 
 }
 
 
 
 function desconectar(){
+    let usuario = localStorage.getItem('usuario');
     localStorage.clear();
-    usuario.estado="Desconectado";
+    usuario.estado="desconectado";
     location.href="login.html";
     singOut();
 }
@@ -38,11 +39,12 @@ function singOut(){
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.singOut().then(function(){
         //lo que quiero hacer cuando me desconecto
-        href="login.html";
-        console.log("Yser signed Out.");
+        location.reload();
+        console.log("User signed Out.");
     });
 }
-function onLoad() {
+
+function onload() {
     gapi.load('auth2', function() {
       gapi.auth2.init();
     });
