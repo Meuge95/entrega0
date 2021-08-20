@@ -12,11 +12,12 @@ function verificacion(){
     if(dato.value.trim() === '' || pass.value.trim() ===''){
         alert ("Falta completar un campo");
     }else {
-       
+
+        location.href="index.html";
         usuario.nombre = dato.value;
         contraseña = pass.value;
         usuario.estado ="conectado";
-        location.href="index.html";
+        
 
         localStorage.setItem('usuario' , JSON.stringify(usuario));
         localStorage.setItem('contraseña' , JSON.stringify(contraseña));
@@ -32,19 +33,20 @@ function desconectar(){
     localStorage.clear();
     usuario.estado="desconectado";
     location.href="login.html";
-    singOut();
+    
+    signOut();
 }
 
-function singOut(){
+function signOut(){
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.singOut().then(function(){
+    auth2.signOut().then(function(){
         //lo que quiero hacer cuando me desconecto
-        location.reload();
-        console.log("User signed Out.");
+        auth2.desconectar();
+       console.log("User signed Out.");
     });
 }
 
-function onload() {
+function onLoad() {
     gapi.load('auth2', function() {
       gapi.auth2.init();
     });
