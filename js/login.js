@@ -1,7 +1,7 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-// key google= 13093693165-cochq5t90d0llc519nu97v7ck8uea9sf.apps.googleusercontent.com
+
 //document.addEventListener("DOMContentLoaded", function(e){});
 
 function verificacion(){
@@ -13,7 +13,7 @@ function verificacion(){
         alert ("Falta completar un campo");
     }else {
 
-        location.href="index.html";
+        location.href = "index.html";
         usuario.nombre = dato.value;
         contraseña = pass.value;
         usuario.estado ="conectado";
