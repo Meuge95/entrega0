@@ -9,7 +9,7 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   
   <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="13093693165-cochq5t90d0llc519nu97v7ck8uea9sf.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="13093693165-cochq5t90d0llc519nu97v7ck8uea9sf.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
@@ -53,24 +53,24 @@
   <div class="form">
      <h1 class="center"><b>e-Mercado</b></h1>
    
-     <form class="login-form">
+     <div class="login-form">
         <input type="text" placeholder="Nombre de usuario" id="usuario" required/>
         <input type="password" placeholder="Contraseña" id="contraseña"required/>
         <button class="btn--btn-primary" type="button" id="conectado" onclick="verificacion();">Iniciar sesión</button>
+        <label><input type="checkbox" id="Recordarme" value="checkbox"> Recordarme</label>
         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
        
-    </form>
+     </div>
    </div>
  
 
   <script>
     
 
-     //let usuario = JSON.parse( localStorage.getItem("usuario"));
-     //let contraseña = JSON.parse( localStorage.getItem("contraseña"));
-     //if(usuario.estado=="conectado"){
-      //location.href="index.html"
-    //}
+   /* let usuario = JSON.parse( localStorage.getItem("usuario"));
+          if(usuario.estado=="conectado"){
+      location.href="index.html"                   
+    }*/
   </script>
 </body>
 </html>

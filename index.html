@@ -16,18 +16,21 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"> 
   </head>
   <body>
-    <nav class="site-header sticky-top py-1 bg-dark">
+     <nav class="site-header sticky-top py-1 bg-dark">
+     
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
         <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-        <a class="py-2 d-none d-md-inline-block" href="login.html">Ingresar</a> 
-        <button class="btn btn-danger" onclick="desconectar();" id="desconectado">Desconectar</button>
+        <a class="py-2 d-none d-md-inline-block" href="login.html" id="conect" >Ingresar</a> 
+        <span class="py-2 d-none d-md-inline-block" style="color: rgb(0, 214, 179); font-weight: bold;" id="nombre"></span>
+        <button class="btn btn-danger" style="color: rgb(255, 255, 255); background-color: rgb(0, 144, 211); border-color: rgb(0, 144, 211);" onclick="desconectar();" id="desconectado">Desconectar</button>
+        
       </div>
     </nav>
     <main role="main">
@@ -112,10 +115,13 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
-    <script>
-    // let usuario = JSON.parse( localStorage.getItem("usuario"));
-     //document.getElementById("usuario").innerHTML="Está conectado: " +usuario.nombre;
-      
+     <script>
+
+     let usuario = JSON.parse(localStorage.getItem("usuario"));
+     
+     document.getElementById('nombre').innerHTML= "Bienvenido: " +usuario.nombre;
+     if (usuario.estado== "conectado") {document.getElementById('conect').innerHTML= " ";}
+   
     </script>
   </body>
 </html>
