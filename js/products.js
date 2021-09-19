@@ -14,7 +14,8 @@ function showProducts(array) {
 
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
-            <div class="row">
+            <a href="product-info.html">
+        <div class="row" >
                 <div class="col-3">
                     <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
                 </div>
@@ -30,6 +31,7 @@ function showProducts(array) {
                 </div>
             </div>
         </div>
+        </a>
         `
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
@@ -123,10 +125,10 @@ let productoFiltrados = [];
 function buscar() {
     let textoEscrito = document.getElementById('buscador').value;
 
-    let productoFiltrado = categoriesArray.filter(product => {
+    let productoFiltrados = categoriesArray.filter(product => {
         return product.name.toLowerCase().indexOf(textoEscrito.toLowerCase()) > -1;
     })
-    showProducts(productoFiltrado);
+    showProducts(productoFiltrados);
 
 };
 
