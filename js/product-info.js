@@ -1,23 +1,38 @@
 var product = {};
 var comentarios = {};
+var relacionados = {};
 
 function showImagesProduct(array) {
 
-    let htmlContentToAppend = "";
+    let htmlContentToAppend = `<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">`;
+    var stringActivo = " active";
 
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
+        <div class="carousel-item` + stringActivo +`">
+        <img src="${imageSrc}" class="d-block w-100" alt="...">
+      </div>
         `
+      stringActivo = "";
+        
 
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        
     }
+
+    htmlContentToAppend +=  ` </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div> `
+    document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 }
 
 function showcComments(array) {
@@ -91,10 +106,43 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
 
     })
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+
+            productosRelacionados = resultObj.data;
+
+            showRelacionados(product,productosRelacionados);
+
+
+        }
+    })
 });
  
+function showRelacionados(arrayRelacionados,arrayProductos){
+   
+    let htmlContentToAppend = "";
+
+    for (let relacionado of arrayRelacionados.relatedProducts){
+   
+     htmlContentToAppend += `
+
+       <div id="mix" class="col-lg-3 col-md-4 col-6" >
+          <div id="mix2" class="d-block mb-4 h-100 img-thumbnail text-center">
+                <img class="img-fluid" src="${arrayProductos[relacionado].imgSrc}" alt="">
+                <h4><b> `+ arrayProductos[relacionado].name+`</b></h4>
+                <small><b>`+ arrayProductos[relacionado].currency + " " + arrayProductos[relacionado].cost + `</b> </small>
+            </div>
+             
+        </div>`
+            
+    
+    }
+
+   document.getElementById("productosRelacionadosGally").innerHTML = htmlContentToAppend;
+}
+
 function calificar(num){ 
-    //let num = parseInt(document.getElementById('cant').value);
+   
     calificacion = num;
     let estrellas = "Califica: ";
     for (let i=1; i<=5; i++){
@@ -130,6 +178,12 @@ function comentar (){
     var minute = tiempo.getMinutes();
     var second = tiempo.getSeconds();
     temp = año;
+    /* if (mes < 10){  //Esto seria la version larga de los if's de abajito
+        temp+= '-0';
+    }else {
+        temp += '-';
+    } 
+      temp += mes; */
     temp += ((mes < 10) ? '-0' : '-') + mes;
     temp += ((dia < 10) ? '-0' : '-') + dia;
     temp += " " ;
@@ -137,7 +191,7 @@ function comentar (){
     temp += ((minute < 10) ? ':0' : ':') + minute;
     temp += ((second < 10) ? ':0' : ':') + second;
     
-    //alert (usuario.nombre);
+    
     comment.user = usuario.nombre;
 
     comment.dateTime = temp;
@@ -149,28 +203,3 @@ function comentar (){
     showcComments(comentarios);
 }
 
-/*function agrandar(num){ 
-    calificacion = num;
-    let estrellas = "Califica: ";
-    for (let i=1; i<=5; i++){
-
-        if (i<=num ){
-            estrellas += `<i class="fas fa-star`;
-            
-        }else {
-
-            estrellas +=`<i class="far fa-star`;
-        }
-        if (i == num) {
-            estrellas += ` fa-2x"`;
-       
-        } else {
-            estrellas += `"`;
-        }
-      estrellas += ` onclick="calificar(`+ i +`);"></i>`;
-    }
-    document.getElementById('star').innerHTML= estrellas;
-   
-
-
-}*/

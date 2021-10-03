@@ -25,8 +25,16 @@
         <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-        <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-        <a class="py-2 d-none d-md-inline-block" href="login.html">Ingresar</a>
+        <div class="dropdown">
+          <button class="btn btn-secondary btn-sm dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="py-2 d-none d-md-inline-block" style="color: rgb(0, 214, 179); font-weight: bold;" id="nombre"></span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="cart.html">Mi Carrito</a>
+            <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+            <button class="btn btn-danger" style="color: rgb(255, 255, 255); background-color: rgb(0, 144, 211); border-color: rgb(0, 144, 211);" onclick="desconectar();" id="desconectado">Desconectar</button>
+          </div>
+        </div>
       </div>
     </nav>
   <!--div class="container p-5">
@@ -110,5 +118,13 @@
     <script src="js/products.js"></script>
     <script src="js/login.js"></script>
     <script src="js/google.js"></script>
+    <script>
+
+      let usuario = JSON.parse(localStorage.getItem("usuario"));
+      
+      document.getElementById('nombre').innerHTML= " " +usuario.nombre;
+      if (usuario.estado== "conectado") {document.getElementById('conect').innerHTML= " ";}
+    
+     </script>
   </body>
 </html>

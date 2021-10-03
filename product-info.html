@@ -14,17 +14,39 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  
- <style>
+
+  <style>
     i {
-        color:gold;
+      color: gold;
 
     }
-    i:hover{
+
+    i:hover {
       zoom: 200%;
+
+    }
+
+    #mix{
+      opacity: 0.8 ;
+      transition: 0.5s;
+    }
+
+    #mix:hover{
+      transform: scale(1.03);
+      opacity: 1;
      
     }
-</style>
+    #mix2:hover{
+      box-shadow:
+                1px 1px #cccfd1,
+                2px 2px #d2d5d8,
+                3px 3px #dfe2e6;
+    }
+    #mix2{
+      
+      transition: 0.5s;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,7 +56,20 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <div class="dropdown">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="py-2 d-none d-md-inline-block" style="color: rgb(0, 214, 179); font-weight: bold;"
+            id="nombre"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="cart.html">Mi Carrito</a>
+          <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+          <button class="btn btn-danger"
+            style="color: rgb(255, 255, 255); background-color: rgb(0, 144, 211); border-color: rgb(0, 144, 211);"
+            onclick="desconectar();" id="desconectado">Desconectar</button>
+        </div>
+      </div>
     </div>
   </nav>
   <main role="main">
@@ -63,34 +98,50 @@
           <p id="productCriteria"></p>
         </dd>
 
-        <dt>Imágenes ilustrativas</dt>
+        <dt class="text-center">Imágenes ilustrativas</dt>
         <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          <div class="" id="productImagesGallery">
           </div>
         </dd>
+        <hr>
+        <dt>
+          Productos Relacionados
+        </dt>
+        <dd>
+
+          <div class="row text-center text-lg-left pt-2" id="productosRelacionadosGally">
+                                    
+          </div>
+
+        </dd>
+        <hr>
+
         <dt>Comentarios</dt>
         <dd class="row text-lg-left pt-2" id="comments">
         </dd>
-        <dt>Agrega tu comentario  </dt>
+        <dt>Agrega tu comentario </dt>
         <dd id="star">
-         Califica: <i class="far fa-star" onclick="calificar(1);" ></i><i class="far fa-star" onclick="calificar(2);"></i><i class="far fa-star" onclick="calificar(3);"></i><i class="far fa-star" onclick="calificar(4);"></i><i class="far fa-star" onclick="calificar(5);"></i>
+          Califica: <i class="far fa-star" onclick="calificar(1);"></i><i class="far fa-star"
+            onclick="calificar(2);"></i><i class="far fa-star" onclick="calificar(3);"></i><i class="far fa-star"
+            onclick="calificar(4);"></i><i class="far fa-star" onclick="calificar(5);"></i>
           <br>
-          </dd>
-          <dd>
+        </dd>
+        <dd>
           <textarea id="descripcion" name="w3review" rows="4" cols="50">
           </textarea>
           <br>
           <input type="submit" value="Enviar" onclick="comentar();">
 
         </dd>
-        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_pmhkmyc5.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;" autoplay ></lottie-player>
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_pmhkmyc5.json" background="transparent"
+          speed="1" style="width: 200px; height: 200px;" autoplay></lottie-player>
       </dl>
-   </div>
-  <div>
+    </div>
+    <div>
 
-  </div>
-  
-</main>
+    </div>
+
+  </main>
 
   <footer class="text-muted">
     <div class="container">
@@ -113,6 +164,16 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/google.js"></script>
+  <script>
+
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    document.getElementById('nombre').innerHTML = " " + usuario.nombre;
+    if (usuario.estado == "conectado") { document.getElementById('conect').innerHTML = " "; }
+
+  </script>
 </body>
 
 </html>
