@@ -27,6 +27,34 @@
         font-size: 3.5rem;
       }
     }
+    .pae{
+      background-color: rgb(228, 239, 250);
+      border:rgb(228, 239, 250) 2px solid;
+      margin: 30px;
+    }
+    .tb{
+      background-color: rgb(228, 239, 250);
+      border:rgb(228, 239, 250) 2px solid;
+      margin: 30px;
+      text-align: center; 
+
+    }
+    .tl{
+      margin: auto;
+      width: 500px; ;
+
+    }
+
+    .pr{
+      width: 500px;
+      margin: auto;
+    }
+    .contador{
+      
+      text-align: center; 
+      background-color: rgb(255, 251, 231); 
+      
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -52,14 +80,89 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+ 
+
+  <h1 style="text-align: center;"> Este es tu Carrito </h1> 
+  <br>
+  <div class="pr">
+     
+     <h3 id="contador" class="contador"  ></h3>   
   </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+        <div class="col text-right">
+         
+            <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                <label class="btn btn-light active" id="USD" onclick="cambiarDiviza('USD');">
+                    <input type="radio" name="options" autocomplete="off"  checked>Precio en USD
+                </label>
+                <label class="btn btn-light" id="UYU" onclick="cambiarDiviza('UYU');">
+                    <input type="radio" name="options" autocomplete="off" > Precio en UYU
+                </label>
+              </div>
+            </div>
+        </div>
+    </div>
+
+  <div id="json" style="width: 1500px; margin: auto;">
+    
+
+  </div  >
+  <hr>
+  <div class="pae" >
+    <h1 style="text-align: center;" > Envio </h1>
+      <br>
+  <form action="../../form-result.php" target="_blank" style="text-align: center;">
+
+    <h4><b> Nombre: </b><input type="text" name="mensaje" value="Tu Nombre" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <br>
+    <h4><b>Apellido:</b>  <input type="text" name="mensaje" value="Tu Apellido" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Direccion </b><input type="text" name="mensaje" value="ej: Av.Bulevar 2573" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Código Postal </b><input type="text" name="mensaje" value="ej: 13500" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <p>
+      <br>
+
+     <b>Llega:</b> <br>
+     <h4> <input type="radio" name="cuando" value="hoy" checked id="impuesto" onclick="envio();"> 1-7 días ( +10% de impuestos)</h4><br>
+  
+     <h4> <input type="radio" name="cuando" value="manana" id="free" onclick="envio();"> 7-14 días (Envio Gratis)</h4>
+  
+    </p>
+  
+    
+  
+    <p>
+  
+  
+      <input type="submit" value="Pagar">
+  
+    </p>
+  
+  </form>
+</div>
+  <hr>
+  <div class="tb">
+    <table class="tl"> 
+      <tr class="table-primary">
+      <th > <h4> Subtotal: </h4>  </th>
+      <td id="subtotal"> </td>
+      </tr>
+      <tr class="table-danger">
+        <th ><h4> Envío: </h4>  </th>
+        <td id="envio"> </td>
+        </tr>
+      <tr class="table-info">
+      <th > <h4> Total: </h4>  </th>
+      <td id="totis"></td>
+      </tr>
+    </table>
+  </div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -68,6 +171,16 @@
       <div></div>
     </div>
   </div>
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
