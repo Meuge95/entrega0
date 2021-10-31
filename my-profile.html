@@ -27,6 +27,24 @@
         font-size: 3.5rem;
       }
     }
+
+    .prof {
+      text-align: center;
+      height:350px;
+      padding: 12px;
+      background-image:url('http://aymcontadores.com/wp/wp-content/uploads/2015/02/fondo-sombra.jpg') ;
+    }
+
+    .avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    .sd{
+      margin-right: 440px;
+      margin-left: 400px;
+
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -41,25 +59,77 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
-        <button class="btn btn-secondary btn-sm dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="py-2 d-none d-md-inline-block" style="color: rgb(0, 214, 179); font-weight: bold;" id="nombre"></span>
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="py-2 d-none d-md-inline-block" style="color: rgb(0, 214, 179); font-weight: bold;"
+            id="nombre"></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="cart.html">Mi Carrito</a>
           <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
-          <button class="btn btn-danger" style="color: rgb(255, 255, 255); background-color: rgb(0, 144, 211); border-color: rgb(0, 144, 211);" onclick="desconectar();" id="desconectado">Desconectar</button>
+          <button class="btn btn-danger"
+            style="color: rgb(255, 255, 255); background-color: rgb(0, 144, 211); border-color: rgb(0, 144, 211);"
+            onclick="desconectar();" id="desconectado">Desconectar</button>
         </div>
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="prof">
+    <div class="col ">
+    <img class="avatar" src="img/profile-default.jpg" id="image">
     </div>
+    <input onchange="inPic(this);" type="file" >
+    <span style="color: rgb(130, 191, 202);" id="nombre2">Nombre de Usuario</span>
+    
   </div>
+  <hr>
+  <div class="containter">
+     
+  <div class="sd">
+   
+    <form action="">
+      <ul>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">Nombre y Apellidos</span>
+          </div>
+          <input type="text" id="nomb" class="form-control" placeholder="Ingrese su nombre">
+          <input type="text" id="apellido" class="form-control" placeholder="Ingrese sus apellidos">
+        </div>
+      </ul>
+      <ul>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Fecha  de nacimiento </span>
+          </div>
+          <input type="date"  id="years" class="form-control" placeholder="Ingrese su Edad" aria-label="" aria-describedby="basic-addon1">
+        </div>
+      </ul>
+      <ul>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+           
+              <span class="input-group-text">Email </span>
+           
+          </div>
+          <input type="text" id="email" class="form-control" aria-label="Text input with dropdown button" placeholder="Ingrese su email">
+        </div>
+      </ul>
+      <ul>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">Telefono </span>
+          </div>
+          <input type="text" id="cel" class="form-control" placeholder="Ingrese su telefono" aria-label="" aria-describedby="basic-addon1">
+        </div>
+      </ul>
+     <div style="text-align: center;">
+      <button type="button" class="btn btn-info" onclick="datos();">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+  </div>
+
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
@@ -90,11 +160,11 @@
   <script>
 
     let usuario = JSON.parse(localStorage.getItem("usuario"));
-    
-    document.getElementById('nombre').innerHTML= " " +usuario.nombre;
-    if (usuario.estado== "conectado") {document.getElementById('conect').innerHTML= " ";}
-  
-   </script>
+
+    document.getElementById('nombre').innerHTML = " " + usuario.nombre;
+    if (usuario.estado == "conectado") { document.getElementById('conect').innerHTML = " "; }
+
+  </script>
 </body>
 
 </html>

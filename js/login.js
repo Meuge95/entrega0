@@ -21,13 +21,32 @@ function verificacion(){
      
 
 }
-/*document.addEventListener('DOMContentLoaded', ()=>{
-    let usuario = JSON.parse( localStorage.getItem("usuario"));
-    if (usuario.estado=='conectado'){
-        location.href="index.html";
-    }
+/*function registro(){
+    let dato = document.getElementById('usuario');
+    let pass = document.getElementById('contraseña');
+    let correo = document.getElementById('correo');
+    let nombreCompleto = document.getElementById('NombreCompleto')
+    let usuario = {};
+    let contraseña = {};
+    let correo = {};
+    if(dato.value.trim() === '' || pass.value.trim() ===''){
+        alert ("Falta completar un campo");
+    }else {
 
-});*/
+        location.href = "index.html";
+        usuario.nombre = dato.value;
+        contraseña = pass.value;
+        correo = correo.value;
+        usuario.estado ="conectado";
+        
+
+        localStorage.setItem('usuario' , JSON.stringify(usuario));
+        localStorage.setItem('contraseña' , JSON.stringify(contraseña));
+        localStorage.setItem('correo' , JSON.stringify(correo))
+    }
+     
+
+}*/
 
 
 

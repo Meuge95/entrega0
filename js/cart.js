@@ -65,16 +65,14 @@ function showCarrito(array) {
 function showCarrito2(array) {
     let contador = 0;
 
-  // var tabla = "<table style='margin: auto;  border: 1px solid #a8a8a8'> <th>  </th><th style='width: 26%'><h3> Nombre </h3></th><th style='width: 26%'><h3> Cantidad </h3></th><th style='width: 26%'><h3> Precio </h3></th>"; //escribe el encabezado
-  var tabla ="<table class='table' style='margin: auto;'> <thead class='thead-light'><tr> <th scope='col' style='width: 26%'><h3> Imagen </h3></th><th scope='col' style='width: 26%'><h3> Nombre </h3></th> <th scope='col' style='width: 26%'><h3> Cantidad </h3></th><th scope='col' style='width: 26%'><h3> Precio </h3></th></tr></thead><tbody>";
+   var tabla ="<table class='table' style='margin: auto;'> <thead class='thead-light'><tr> <th scope='col' style='width: 26%'><h3> Imagen </h3></th><th scope='col' style='width: 26%'><h3> Nombre </h3></th> <th scope='col' style='width: 26%'><h3> Cantidad </h3></th><th scope='col' style='width: 26%'><h3> Precio </h3></th></tr></thead><tbody>";
    for (i = 0; i < array.articles.length; i++) {
-       
-        //tabla += "<tr style='border: 1px solid #a8a8a8' ><td class='align middle'> <img height='200' src=" + array.articles[i].src + "></td> <td class='align middle' >" + array.articles[i].name  + "</td><td class='align middle'><input  type='number'  step='1' min='1'  id='countD"+ i +"' onchange='actualizar("+ i +")' value="+ array.articles[i].count +"></td> <td class='align middle' id='priceD"+ i +"' >"+ array.articles[i].currency +" " + array.articles[i].unitCost + " </td></tr>";
+
         tabla += "<tr> <th scope='row'><img height='200' src=" + array.articles[i].src + "></th>  <td class='align middle'>" + array.articles[i].name  + "</td>   <td class='align middle'><input  type='number'  step='1' min='1'  id='countD"+ i +"' onchange='actualizar("+ i +")' value="+ array.articles[i].count +"></td>     <td class='align middle' id='priceD"+ i +"' >"+ array.articles[i].currency +" " + array.articles[i].unitCost + "</td>   </tr>";
-         contador += parseInt(array.articles[i].count) ;
+        contador += parseInt(array.articles[i].count) ;
     }
     tabla += "  </tbody> </table>";
-    //tabla += "</table> ";
+  
 
     document.getElementById("json").innerHTML = tabla;
     let totals = 0;
@@ -177,19 +175,3 @@ showCarrito(articles);
 
 }
 
-/*function contador() {
-    var tamaño = JSON.parse(document.getItem('json'));
-    document.getElementById("contador").innerHTML = "Contiene " + tamaño + " productos";
-    if (tamaño == 0) {
-        document.getElementById("articles").innerHTML = "El carrito está vacio.";
-
-    }
-    else if (tamaño > 0) {
-       var tabla = document.getItem('json');
-        document.getElementById("json").innerHTML = tabla;//JSON.parse(tabla); 
-        
-   
-   
- }
-   
-}*/
