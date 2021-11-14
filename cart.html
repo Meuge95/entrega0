@@ -8,10 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
-
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
+  <link href="css/cart.css" rel="stylesheet">
+  
+  
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -55,10 +63,16 @@
       background-color: rgb(255, 251, 231); 
       
     }
+
+    .credit-card-div  span { padding-top:10px; }
+.credit-card-div img { padding-top:30px; }
+.credit-card-div .small-font { font-size:9px; }
+.credit-card-div .pad-adjust { padding-top:10px; }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 
 <body>
@@ -84,7 +98,7 @@
   <div></div>
   <div></div>
   <div></div>
- 
+  
 
   <h1 style="text-align: center;"> Este es tu Carrito </h1> 
   <br>
@@ -117,14 +131,14 @@
   <div class="pae" >
     <h1 style="text-align: center;" > Envio </h1>
       <br>
-  <form action="../../form-result.php" target="_blank" style="text-align: center;">
+  <form  action="../../form-result.php" target="_blank" style="text-align: center;" >
 
-    <h4><b> Nombre: </b><input type="text" name="mensaje" value="Tu Nombre" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Nombre: </b><input type="text" id="nom" name="mensaje"  style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
     
-    <h4><b>Apellido:</b>  <input type="text" name="mensaje" value="Tu Apellido" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
-    <h4><b> Número de telefono:  </b><input type="text" name="mensaje" value="número de contacto" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
-    <h4><b> Direccion </b><input type="text" name="mensaje" value="ej: Av.Bulevar 2573" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
-    <h4><b> Código Postal </b><input type="text" name="mensaje" value="ej: 13500" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b>Apellido:</b>  <input type="text" id="apell" name="mensaje"  style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Número de telefono:  </b><input type="text" id="tel" name="mensaje"  style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Direccion </b><input type="text" id="dirc" name="mensaje"  style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
+    <h4><b> Código Postal </b><input type="text" id="postal" name="mensaje" style="color: rgb(172, 171, 171); background-color: rgb(223, 244, 251);"></h4>
     <p>
       <br>
 
@@ -135,19 +149,7 @@
   
     </p>
   
-    
-  
-    <p>
-  
-  
-      <input type="submit" value="Pagar">
-  
-    </p>
-  
-  </form>
-</div>
-  <hr>
-  <div class="tb">
+     <div class="tb">
     <table class="tl"> 
       <tr class="table-primary">
       <th > <h4> Subtotal: </h4>  </th>
@@ -163,7 +165,88 @@
       </tr>
     </table>
   </div>
+   
+  
+   
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Métodos de pago
+  </button>
+    <input type="button" class="btn btn-primary" value="Pagar" href="products.html" onclick="pagar();">
 
+  <!------------------------------------------------------------------------>
+
+ 
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Metodos de pago</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body ">
+        <form action="#" class="was-validated">
+          <div class="panel panel-default" >
+           <div class="panel-heading">
+               
+                <div class="row ">
+                        <div class="col-md-12" style="text-align: left;">
+                          <input type="radio" id="tarjetaCredito"  name="tipoDePago"> Tajeta<br> 
+                            <input type="text"  id="cbox1" class="form-control" placeholder="Nro de tarjeta"  />
+                        </div>
+                    </div>
+               <div class="row ">
+                        <div class="col-md-6 col-sm-3 col-xs-3">
+                            <span class="help-block text-muted small-font " >Expiracion:</span>
+                            <input type="month" id="expMes" class="form-control" placeholder="MM" />
+                        </div>
+                  
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                            <span class="help-block text-muted small-font" >  CCV</span>
+                            <input type="text" id="CCV" class="form-control"/>
+                        </div>
+                   <div class="col-md-3 col-sm-3 col-xs-3">
+          
+                   </div>
+                    </div>
+                    <br>
+               <div class="row ">
+                        <div class="col-md-12 pad-adjust">
+                          <span class="help-block text-muted small-font" >Nombre del titular</span>          
+                            <input type="text" id="titularT" class="form-control"/>
+                        </div>
+                    </div>
+                    <br>
+               <div class="row">
+          <div class="col-md-12 pad-adjust" style="text-align: left;">
+              <div class="checkbox">
+              
+                <input type="radio" id="cbox2" value="banco"  name="tipoDePago"> Cuenta bancaría <br> 
+                <input type="text" id="cuentaBancaria" class="form-control" placeholder="Nro de  cuenta bancaría">
+            </div>
+          </div>
+        </div>             
+        </div>
+      </div>
+          </form> 			
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-primary"  onclick="vali();">Guardar cambios</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  </form>
+</div>
+  <hr>
+ 
+ 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -189,6 +272,7 @@
   <script src="js/cart.js"></script>
   <script src="js/login.js"></script>
   <script src="js/google.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
 
     let usuario = JSON.parse(localStorage.getItem("usuario"));

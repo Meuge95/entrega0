@@ -1,3 +1,6 @@
+var banco = false;
+var crdit = false;
+
 const Divizas = {
     USD: 'USD',
     UYU: 'UYU',
@@ -30,6 +33,34 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
 
     })
+    document.getElementById('tarjetaCredito').addEventListener("click", function(){
+        document.getElementById("cbox1").disabled = false;
+        document.getElementById("expMes").disabled = false;
+        document.getElementById("CCV").disabled = false;
+        document.getElementById("titularT").disabled = false;
+       
+
+        document.getElementById("cuentaBancaria").disabled = true;
+
+        crdit = true;
+        banco=false;
+    });
+
+    document.getElementById("cbox2").addEventListener("click", function(){
+        document.getElementById("cbox1").disabled = true;
+        document.getElementById("expMes").disabled = true;
+        document.getElementById("CCV").disabled = true;
+        document.getElementById("titularT").disabled = true;
+
+        document.getElementById("cuentaBancaria").disabled = false;
+
+        crdit =false;
+        banco=true;
+    })
+
+
+
+
 });
 
 function showCarrito(array) {
@@ -50,7 +81,7 @@ function showCarrito(array) {
         subtotals += array.articles[i].unitCost;
         if(!isFree) envios += array.articles[i].unitCost * 0.01;
         else envios = 0;
-        totals += array.articles[i].unitCost * array.articles[i].count + (array.articles[i].unitCost * 0.01);  ;
+        totals += array.articles[i].unitCost * array.articles[i].count + envios;  
     }
     total = totals;
     subtotal = subtotals;
@@ -68,7 +99,7 @@ function showCarrito2(array) {
    var tabla ="<table class='table' style='margin: auto;'> <thead class='thead-light'><tr> <th scope='col' style='width: 26%'><h3> Imagen </h3></th><th scope='col' style='width: 26%'><h3> Nombre </h3></th> <th scope='col' style='width: 26%'><h3> Cantidad </h3></th><th scope='col' style='width: 26%'><h3> Precio </h3></th></tr></thead><tbody>";
    for (i = 0; i < array.articles.length; i++) {
 
-        tabla += "<tr> <th scope='row'><img height='200' src=" + array.articles[i].src + "></th>  <td class='align middle'>" + array.articles[i].name  + "</td>   <td class='align middle'><input  type='number'  step='1' min='1'  id='countD"+ i +"' onchange='actualizar("+ i +")' value="+ array.articles[i].count +"></td>     <td class='align middle' id='priceD"+ i +"' >"+ array.articles[i].currency +" " + array.articles[i].unitCost + "</td>   </tr>";
+        tabla += "<tr> <th scope='row'><img height='200' src=" + array.articles[i].src + "></th>  <td class='align middle'>" + array.articles[i].name  + "</td>   <td class='align middle'><input  type='number'  step='1' min='1'  id='countD"+ i +"' onchange='actualizar("+ i +")' value="+ array.articles[i].count +"></td>     <td class='align middle' id='priceD"+ i +"' >"+ array.articles[i].currency +" " + array.articles[i].unitCost + "</td> <td> <button class='btn btn-default' onclick='eliminar(" + i + ")'> <i class='far fa-trash-alt'></i> </button> </td>   </tr>";
         contador += parseInt(array.articles[i].count) ;
     }
     tabla += "  </tbody> </table>";
@@ -83,7 +114,7 @@ function showCarrito2(array) {
         subtotals += array.articles[i].unitCost;
         if(!isFree) envios += array.articles[i].unitCost * 0.01;
         else envios = 0;
-        totals += array.articles[i].unitCost * array.articles[i].count + (array.articles[i].unitCost * 0.01);  ;
+        totals += array.articles[i].unitCost * array.articles[i].count + envios;  
     }
     total = totals;
     subtotal = subtotals;
@@ -135,7 +166,7 @@ function actualizar(num) {
         subtotals += articles.articles[i].unitCost;
         if(!isFree) envios += articles.articles[i].unitCost * 0.01;
         else envios = 0;
-        totals += articles.articles[i].unitCost * articles.articles[i].count + (articles.articles[i].unitCost * 0.01);
+        totals += articles.articles[i].unitCost * articles.articles[i].count + envios;
     }
     subtotal = subtotals;
     envi = envios
@@ -166,7 +197,7 @@ function envio(){
      subtotals += articles.articles[i].unitCost;
      if(!isFree) envios += articles.articles[i].unitCost * 0.01;
      else envios = 0;
-     totals += articles.articles[i].unitCost * articles.articles[i].count + (articles.articles[i].unitCost * 0.01);
+     totals += articles.articles[i].unitCost * articles.articles[i].count + envios;
  }
  subtotal = subtotals;
  envi = envios
@@ -175,3 +206,84 @@ showCarrito(articles);
 
 }
 
+
+
+function eliminar (i) {
+    articles.articles.splice(i,1);
+    showCarrito2(articles);
+    actualizar();
+
+}
+
+
+function vali () {
+
+    let nrotarjeta = document.getElementById("cbox1");
+    let expMes = document.getElementById("expMes");
+    let CCV = document.getElementById("CCV");
+    let nombre=document.getElementById("cuentaBancaria");
+    let titularT = document.getElementById("titularT");
+    
+    
+    
+        
+    if (crdit){
+        //let modal = document.getElementById('exampleModal')
+          
+     if (nrotarjeta.value.trim() ===''  || expMes.value.trim() === '' || CCV.value.trim() === '' || titularT.value.trim() === ''){
+        //alert("Falta rellenar un campo, recuerde que todos los campos son obligatorios.");
+        nrotarjeta.classList.add("vali"); 
+        expMes.classList.add("vali");
+        CCV.classList.add("vali");
+        titularT.classList.add("vali");
+     }else{
+        nrotarjeta.classList.remove("vali");
+        expMes.classList.remove("vali");
+        CCV.classList.remove("vali");
+        titularT.classList.remove("vali");
+        //$('#exampleModal .close').click();
+       
+    }
+    }       
+    if (banco){
+        if (nombre.value.trim() === ''){
+            nombre.classList.add("vali"); 
+         } else{
+                nombre.classList.remove("vali");
+            }
+    }
+};
+
+function pagar() {
+   let nom = document.getElementById('nom');
+   let apell = document.getElementById('apell');
+   let tel = document.getElementById('tel');
+   let dirc = document.getElementById('dirc');
+   let postal = document.getElementById('postal');
+
+    if( nom.value.trim() === '' || apell.value.trim() === '' || tel.value.trim() === '' || dirc.value.trim() === '' || postal.value.trim() === ''){
+        nom.classList.add("vali"); 
+        apell.classList.add("vali");
+        tel.classList.add("vali");
+        dirc.classList.add("vali");
+        postal.classList.add("vali");
+        Swal.fire({
+            'title': 'Faltan campos por rellenar',
+            'text': 'Por favor revise los campos resaltados',
+            'icon': 'warning'
+        });
+     }else{
+
+        nom.classList.remove("vali");
+        apell.classList.remove("vali");
+        tel.classList.remove("vali");
+        dirc.classList.remove("vali");
+        postal.classList.remove("vali");
+        Swal.fire({
+          'title': 'Compra realizada con éxito',
+          'text': 'Sus compras se enviaran dependiendo del envío seleccionado',
+          'icon': 'success'
+        });
+    }
+   
+}; 
